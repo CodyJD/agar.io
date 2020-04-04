@@ -503,56 +503,60 @@ void physics(void)
 	if (leftButtonDown) {
 		//Special physics applied here.
 		//Physics employs a penalty system.
-
-
-    //setting up for loops to iterate over every ball instance will 
+     
+	     
+     //setting up for loops to iterate over every ball instance will 
     //be the best way to create multiple ball instantiations adn
     //stuff
 //change all ball[1]'s to i's and instantiate in a for loop
 //
-		ball[1].vel[0] += ball[1].force[0];
-		ball[1].vel[1] += ball[1].force[1];
-		ball[1].pos[0] += ball[1].vel[0];
-		ball[1].pos[1] += ball[1].vel[1];
-		ball[1].force[0] =
-		ball[1].force[1] = 0.0;
-		ball[0].pos[0] = leftButtonPos[0];
-		ball[0].pos[1] = leftButtonPos[1];
-		Vec v;
-		v[0] = ball[1].pos[0] - ball[0].pos[0];
-		v[1] = ball[1].pos[1] - ball[0].pos[1];
-		Flt distance = sqrt(v[0]*v[0] + v[1]*v[1]);
-		if (distance < (ball[0].radius + ball[1].radius)) {
-			ball[1].force[0] = v[0]*0.01;
-			ball[1].force[1] = v[1]*0.01;
-		}
-		ball[1].vel[0] *= 0.99;
-		ball[1].vel[1] *= 0.99;
+		for (int i = 0; i < n; i++) {
+			ball[i].vel[0] += ball[i].force[0];
+			ball[i].vel[1] += ball[i].force[1];
+			ball[i].pos[0] += ball[i].vel[0];
+			ball[i].pos[1] += ball[i].vel[1];
+			ball[i].force[0] =
+				ball[i].force[1] = 0.0;
+			ball[0].pos[0] = leftButtonPos[0];
+			ball[0].pos[1] = leftButtonPos[1];
+			Vec v;
+			v[0] = ball[i].pos[0] - ball[0].pos[0];
+			v[1] = ball[i].pos[1] - ball[0].pos[1];
+			Flt distance = sqrt(v[0]*v[0] + v[1]*v[1]);
+			if (distance < (ball[0].radius + ball[1].radius)) {
+				ball[i].force[0] = v[0]*0.01;
+				ball[i].force[1] = v[1]*0.01;
+			}
+			ball[i].vel[0] *= 0.99;
+			ball[i].vel[1] *= 0.99;
+		
 		//
 		//bounce off window sides...
-		if (ball[1].pos[0] < ball[1].radius) {
-			ball[1].pos[0] = ball[1].radius + 0.1;
-			if (ball[1].vel[0] < 0.0)
-				ball[1].vel[0] = -ball[1].vel[0];
+
+		if (ball[i].pos[0] < ball[i].radius) {
+			ball[i].pos[0] = ball[i].radius + 0.1;
+			if (ball[i].vel[0] < 0.0)
+				ball[i].vel[0] = -ball[i].vel[0];
 			playSound(1);
 		}
-		if (ball[1].pos[0] >= (Flt)xres-ball[1].radius) {
-			ball[1].pos[0] = (Flt)xres-ball[1].radius - 0.1;
-			if (ball[1].vel[0] > 0.0)
-				ball[1].vel[0] = -ball[1].vel[0];
+		if (ball[i].pos[0] >= (Flt)xres-ball[i].radius) {
+			ball[i].pos[0] = (Flt)xres-ball[i].radius - 0.1;
+			if (ball[i].vel[0] > 0.0)
+				ball[i].vel[0] = -ball[i].vel[0];
 			playSound(1);
 		}
-		if (ball[1].pos[1] < ball[1].radius) {
-			ball[1].pos[1] = ball[1].radius + 0.1;
-			if (ball[1].vel[1] < 0.0)
-				ball[1].vel[1] = -ball[1].vel[1];
+		if (ball[i].pos[1] < ball[i].radius) {
+			ball[i].pos[1] = ball[i].radius + 0.1;
+			if (ball[i].vel[1] < 0.0)
+				ball[i].vel[1] = -ball[i].vel[1];
 			playSound(1);
 		}
-		if (ball[1].pos[1] >= (Flt)yres-ball[1].radius) {
-			ball[1].pos[1] = (Flt)yres-ball[1].radius - 0.1;
-			if (ball[1].vel[1] > 0.0)
-				ball[1].vel[1] = -ball[1].vel[1];
+		if (ball[i].pos[1] >= (Flt)yres-ball[i].radius) {
+			ball[i].pos[1] = (Flt)yres-ball[i].radius - 0.1;
+			if (ball[i].vel[1] > 0.0)
+				ball[i].vel[1] = -ball[i].vel[1];
 			playSound(1);
+		}
 		}
 		return;
 	}
@@ -577,7 +581,7 @@ void physics(void)
 			vcontact[0][1] = ball[i].pos[1] - ball[j].pos[1];
 			//vcontact[0][2] = 0.0;
 			distance = sqrt(vcontact[0][0]*vcontact[0][0] +
-							vcontact[0][1]*vcontact[0][1]);
+					vcontact[0][1]*vcontact[0][1]);
 			if (distance < (ball[i].radius + ball[j].radius)) {
 				//We have a collision!
 				playSound(0);
@@ -655,9 +659,9 @@ void drawBall(Flt rad)
 		firsttime=0;
 	}
 	glBegin(GL_TRIANGLE_FAN);
-		for (i=0; i<n; i++) {
-			glVertex2f(verts[i][0]*rad, verts[i][1]*rad);
-		}
+	for (i=0; i<n; i++) {
+		glVertex2f(verts[i][0]*rad, verts[i][1]*rad);
+	}
 	glEnd();
 }
 
@@ -669,18 +673,18 @@ void render(void)
 	//
 	//draw balls
 	//glColor3ub(1,1,1);
-    glColor3f(1,1,1);
+	glColor3f(1,0,0);
 	glPushMatrix();
 	glTranslatef(ball[0].pos[0], ball[0].pos[1], ball[0].pos[2]);
 	drawBall(ball[0].radius);
 	glPopMatrix();
-   
+
 	glColor3f(1,0,0);
 	glPushMatrix();
 	glTranslatef(ball[1].pos[0], ball[1].pos[1], ball[1].pos[2]);
 	drawBall(ball[1].radius);
 	glPopMatrix(); 
-    
+
 	glColor3f(1,0,0);
 	glPushMatrix();
 	glTranslatef(ball[2].pos[0], ball[2].pos[1], ball[2].pos[2]);
@@ -705,21 +709,21 @@ void render(void)
 	sprintf(ts, "%i", lbumphigh);
 	ggprint8b(&r, 16, 0x00ff000, ts);
 	//
-    //cue
+	//cue
 	r.center = 1;
 	r.left = ball[0].pos[0];
 	r.bot  = ball[0].pos[1]-4;
-    ggprint8b(&r, 16, 0x00000000, "Cue Ball");
-    //object
+	ggprint8b(&r, 16, 0x000000, "Cue Ball");
+	//object
 	r.left = ball[1].pos[0];
 	r.bot  = ball[1].pos[1]-4;
 	ggprint8b(&r, 16, 0xfffffff, "object");
-    //object
+	//object
 	r.left = ball[2].pos[0];
 	r.bot  = ball[2].pos[1]-4;
 	ggprint8b(&r, 16, 0xffffffff, "object");
 	//object
-    r.left = ball[3].pos[0];
+	r.left = ball[3].pos[0];
 	r.bot  = ball[3].pos[1]-4;
 	ggprint8b(&r, 16, 0xffffffff, "object");
 }
