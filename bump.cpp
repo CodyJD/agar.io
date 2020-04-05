@@ -248,6 +248,9 @@ int main(void)
 	init_balls();
 	clock_gettime(CLOCK_REALTIME, &timePause);
 	clock_gettime(CLOCK_REALTIME, &timeStart);
+
+
+
 	while (!done) {
 		while (x11.getPending()) {
 			XEvent e;
