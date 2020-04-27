@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Aldrich');
+body{font-family: 'Aldrich';}
+
+img{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h1{
+    text-align: center;
+    color: Black;
+    font-size: 70px;
+    font-weight: bold;
+}
+
+p{
+    text-align: center;
+    color: blue;
+    font-size: 25px;
+    display: block;
+}
+
+.tablinks {
+  display: inline-block;
+}
+
+/*for dropdown menu/////////////////////////////////////////////*/
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 0%;
+  right: auto;
+  top: 100%;
+  bottom: auto;
+  text-align: center;
+  bottom: auto;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add
+this class to the .dropdown-content container
+when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+/* Style the buttons inside the tab/////////////////////////// */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    border-right: 1px solid #ccc;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 35px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
